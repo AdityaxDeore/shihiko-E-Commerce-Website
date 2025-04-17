@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future Fashion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.glass-nav {
+backdrop-filter: blur(10px);
+background: rgba(255, 255, 255, 0.8);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+transition: all 0.3s ease;
+}
+.glass-nav:hover {
+background: rgba(255, 255, 255, 0.9);
+}
+.product-card {
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.product-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+.magnetic-button {
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+position: relative;
+overflow: hidden;
+}
+.magnetic-button:after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(255, 255, 255, 0.2);
+transform: translateX(-100%);
+transition: transform 0.4s ease;
+}
+.magnetic-button:hover:after {
+transform: translateX(0);
+}
+.custom-cursor {
+width: 20px;
+height: 20px;
+background: rgba(87, 181, 231, 0.3);
+border-radius: 50%;
+position: fixed;
+pointer-events: none;
+z-index: 9999;
+transition: transform 0.1s ease;
+}
+.cart-panel {
+transform: translateX(100%);
+transition: transform 0.3s ease;
+}
+.cart-panel.open {
+transform: translateX(0);
+}
+@keyframes shimmer {
+0% { background-position: -1000px 0; }
+100% { background-position: 1000px 0; }
+}
+.skeleton {
+background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+background-size: 1000px 100%;
+animation: shimmer 2s infinite linear;
+}
+.dropdown-menu {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.group:hover .dropdown-menu,
+.group:focus-within .dropdown-menu {
+    display: block;
+    opacity: 1;
+}
+
+.group .dropdown-menu {
+    transition-delay: 0.3s;
+}
+.featured-product-card {
+    width: 190px;
+    height: 254px;
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    border-radius: 20px;
+    transition: all .3s;
+}
+
+.featured-product-card:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+}
+
+.featured-product-card2 {
+    width: 190px;
+    height: 254px;
+    background-color: #1a1a1a;
+    transition: all .2s;
+}
+
+.featured-product-card2:hover {
+    transform: scale(0.98);
+    border-radius: 20px;
+}
+/* From Uiverse.io by musashi-13 */
+@keyframes autoRun3d {
+  from {
+    transform: perspective(800px) rotateY(-360deg);
+  }
+  to {
+    transform: perspective(800px) rotateY(0deg);
+  }
+}
+
+@keyframes animateBrightness {
+  10% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(0.1);
+  }
+  90% {
+    filter: brightness(1);
+  }
+}
+
+.card-3d {
+  position: relative;
+  width: 100%; /* Full width */
+  height: 400px; /* Adjusted height */
+  transform-style: preserve-3d;
+  transform: perspective(800px);
+  animation: autoRun3d 20s linear infinite;
+  will-change: transform;
+  border-radius: 2rem;
+  margin: 0 auto; /* Center the card */
+}
+
+.card-3d div {
+  position: absolute;
+  width: 200px; /* Adjusted width */
+  height: 200px; /* Adjusted height */
+  background-color: rgb(199, 199, 199);
+  border: solid 2px lightgray;
+  border-radius: 2rem;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  animation: animateBrightness 20s linear infinite;
+  transition-duration: 200ms;
+  will-change: transform, filter;
+}
+
+.card-3d:hover {
+  animation-play-state: paused !important;
+}
+
+.card-3d:hover div {
+  animation-play-state: paused !important;
+}
+
+.card-3d div:nth-child(1) {
+  transform: translate(-50%, -50%) rotateY(0deg) translateZ(400px); /* Adjusted translateZ */
+  animation-delay: -0s;
+}
+
+.card-3d div:nth-child(2) {
+  transform: translate(-50%, -50%) rotateY(36deg) translateZ(400px); /* Adjusted translateZ */
+  animation-delay: -2s;
+}
+
+.card-3d div:nth-child(3) {
+  transform: translate(-50%, -50%) rotateY(72deg) translateZ(400px); /* Adjusted translateZ */
+  animation-delay: -4s;
+}
+
+.card-3d div:nth-child(4) {
+  transform: translate(-50%, -50%) rotateY(108deg) translateZ(400px); /* Adjusted translateZ */
+  animation-delay: -6s;
+}
+
+.card-3d div:nth-child(5) {
+  transform: translate(-50%, -50%) rotateY(144deg) translateZ(400px); /* Adjusted translateZ */
+  animation-delay: -8s;
+}
+
+.card-3d div:nth-child(6) {
+  transform: translate(-50%, -50%) rotateY(180deg) translateZ(400px); /* Adjusted translateZ */
+  animation-delay: -10s;
+}
+
+.card-3d div:nth-child(7) {
+  transform: translate(-50%, -50%) rotateY(216deg) translateZ(400px); /* Adjusted translateZ */
+  animation-delay: -12s;
+}
+
+.card-3d div:nth-child(8) {
+  transform: translate(-50%, -50%) rotateY(252deg) translateZ(400px); /* Adjusted translateZ */
+  animation-delay: -14s;
+}
+
+.card-3d div:nth-child(9) {
+  transform: translate(-50%, -50%) rotateY(288deg) translateZ(400px); /* Adjusted translateZ */
+  animation-delay: -16s;
+}
+
+.card-3d div:nth-child(10) {
+  transform: translate(-50%, -50%) rotateY(324deg) translateZ(400px); /* Adjusted translateZ */
+  animation-delay: -18s;
+}
+/* Add this CSS to your existing styles */
+.footer {
+  background-color: #f8f8f8;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.footer h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.footer p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.footer a {
+  color: #57B5E7;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #333;
+}
+</style>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#57B5E7',
+secondary: '#8DD3C7'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+</head>
+<body class="bg-white font-['Inter']">
+<div class="custom-cursor hidden md:block"></div>
+<nav class="glass-nav fixed w-full z-50">
+<div class="container mx-auto px-6 py-4">
+<div class="flex items-center justify-between">
+<div class="text-3xl font-['Roboto'] font-bold">shihiko</div>
+<div class="hidden md:flex items-center space-x-8">
+<div class="relative group">
+<button class="flex items-center hover:text-primary transition-colors duration-300 ease-in-out transform hover:-translate-y-1">
+New Arrivals
+<i class="ri-arrow-down-s-line ml-1"></i>
+</button>
+<div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden group-hover:block dropdown-menu">
+<a href="new-arrivals.html?category=latest" class="block px-4 py-2 hover:bg-gray-50">Latest Releases</a>
+<a href="new-arrivals.html?category=trending" class="block px-4 py-2 hover:bg-gray-50">Trending Now</a>
+<a href="new-arrivals.html?category=seasonal" class="block px-4 py-2 hover:bg-gray-50">Seasonal Collection</a>
+<a href="new-arrivals.html?category=exclusive" class="block px-4 py-2 hover:bg-gray-50">Exclusive Items</a>
+</div>
+</div>
+<div class="relative group">
+<button class="flex items-center hover:text-primary transition-colors duration-300 ease-in-out transform hover:-translate-y-1">
+Men
+<i class="ri-arrow-down-s-line ml-1"></i>
+</button>
+<div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden group-hover:block dropdown-menu">
+<a href="men.html?category=clothing" class="block px-4 py-2 hover:bg-gray-50">Clothing</a>
+<a href="men.html?category=shoes" class="block px-4 py-2 hover:bg-gray-50">Shoes</a>
+<a href="men.html?category=accessories" class="block px-4 py-2 hover:bg-gray-50">Accessories</a>
+<a href="men.html?category=suits" class="block px-4 py-2 hover:bg-gray-50">Suits</a>
+</div>
+</div>
+<div class="relative group">
+<button class="flex items-center hover:text-primary transition-colors duration-300 ease-in-out transform hover:-translate-y-1">
+Women
+<i class="ri-arrow-down-s-line ml-1"></i>
+</button>
+<div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden group-hover:block dropdown-menu">
+<a href="women.html?category=clothing" class="block px-4 py-2 hover:bg-gray-50">Clothing</a>
+<a href="women.html?category=shoes" class="block px-4 py-2 hover:bg-gray-50">Shoes</a>
+<a href="women.html?category=accessories" class="block px-4 py-2 hover:bg-gray-50">Accessories</a>
+<a href="women.html?category=dresses" class="block px-4 py-2 hover:bg-gray-50">Dresses</a>
+</div>
+</div>
+<div class="relative group">
+<button class="flex items-center hover:text-primary transition-colors duration-300 ease-in-out transform hover:-translate-y-1">
+Collections
+<i class="ri-arrow-down-s-line ml-1"></i>
+</button>
+<div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden group-hover:block dropdown-menu">
+<a href="collections.html?category=summer" class="block px-4 py-2 hover:bg-gray-50">Summer 2025</a>
+<a href="collections.html?category=winter" class="block px-4 py-2 hover:bg-gray-50">Winter Essentials</a>
+<a href="collections.html?category=limited" class="block px-4 py-2 hover:bg-gray-50">Limited Edition</a>
+<a href="collections.html?category=sustainable" class="block px-4 py-2 hover:bg-gray-50">Sustainable Fashion</a>
+</div>
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<div class="relative">
+<button id="searchButton" class="w-10 h-10 flex items-center justify-center hover:text-primary transition-all duration-300 transform hover:scale-110">
+<i class="ri-search-line text-xl"></i>
+</button>
+<div id="searchPanel" class="hidden absolute right-0 top-full mt-4 w-80 bg-white rounded-lg shadow-xl p-4">
+<div class="relative">
+<input type="text" id="searchInput" class="w-full pl-10 pr-4 py-2 rounded border-none bg-gray-50 focus:ring-2 focus:ring-primary/20 text-sm" placeholder="Search products...">
+<i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+</div>
+<div id="searchResults" class="mt-4 max-h-96 overflow-y-auto"></div>
+</div>
+</div>
+<div class="relative group">
+<button class="w-10 h-10 flex items-center justify-center hover:text-primary transition-all duration-300 transform hover:scale-110">
+<i class="ri-user-line text-xl"></i>
+</button>
+<div class="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg py-2 hidden group-hover:block">
+<a href="user.html" class="flex items-center px-4 py-2 hover:bg-gray-50">
+<i class="ri-user-settings-line mr-2"></i>
+<span>My Profile</span>
+</a>
+<a href="orders.html" class="flex items-center px-4 py-2 hover:bg-gray-50">
+<i class="ri-shopping-bag-line mr-2"></i>
+<span>My Orders</span>
+</a>
+<a href="wishlist.html" class="flex items-center px-4 py-2 hover:bg-gray-50">
+<i class="ri-heart-line mr-2"></i>
+<span>Wishlist</span>
+</a>
+<a href="user.html" class="flex items-center px-4 py-2 hover:bg-gray-50">
+<i class="ri-settings-line mr-2"></i>
+<span>Settings</span>
+</a>
+<div class="border-t border-gray-100 my-1"></div>
+<a href="login.html" onclick="handleLogout(event)" class="flex items-center px-4 py-2 hover:bg-gray-50 text-red-500">
+<i class="ri-logout-box-line mr-2"></i>
+<span>Logout</span>
+</a>
+</div>
+</div>
+<button id="cartButton" class="w-10 h-10 flex items-center justify-center hover:text-primary transition-all duration-300 transform hover:scale-110">
+<i class="ri-shopping-bag-line text-xl"></i>
+</button>
+</div>
+</div>
+</div>
+</nav>
+
+
+
+<section class="relative min-h-screen flex items-center pt-20">
+  <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+    <source src="https://cdn.dribbble.com/userupload/18508205/file/original-a2cae8c84cca9acd3940812be5a7eb27.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="text-white">
+        <!-- ...existing code... -->
+      </div>
+    </div>
+  </div>
+  <!-- Adjust the button style -->
+  <button onclick="window.location.href='grid.html'" class="magnetic-button bg-white bg-opacity-30 text-black px-6 py-3 rounded-button text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg absolute bottom-8 left-1/2 transform -translate-x-1/2">
+    Explore Collection
+  </button>
+</section>
+<!-- Add the 3D card banner here -->
+<section class="py-20">
+    <div class="container mx-auto px-6">
+        <div class="card-3d mx-auto">
+            <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/7d48f0213101861.6740411dd35b4.png" alt="" style="border-radius: 2rem;"></div>
+            <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/a20ce6213101861.6740411dd418c.jpg" alt="" style="border-radius: 2rem;"></div>
+            <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/422987218187329.679cf67860e0b.jpg" alt="" style="border-radius: 2rem;"></div>
+            <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/01d29f213101861.6740411dd0174.png" alt="" style="border-radius: 2rem;"></div>
+            <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/13b6f5213101861.6740411dd18db.png" alt="" style="border-radius: 2rem;"></div>
+            <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/3d6b83213101861.6740411dd3a24.png" alt="" style="border-radius: 2rem;"></div>
+            <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/7545fb213101861.6740411dd06d0.png" alt="" style="border-radius: 2rem;"></div>
+            <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/41db36213101861.6740411dce1c9.jpg" alt="" style="border-radius: 2rem;"></div>
+            <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/335c09213101861.6740411dcfab4.jpg" alt="" style="border-radius: 2rem;"></div>
+            <div><img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/f779a4213101861.6740411dd4ca4.png" alt="" style="border-radius: 2rem;"></div>
+        </div>
+    </div>
+</section>
+<section class="py-20">
+<div class="container mx-auto px-6">
+<h2 class="text-4xl font-bold mb-12 text-center">Featured Products</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="productGrid">
+<!-- Products will be dynamically inserted here -->
+</div>
+</div>
+</section>
+<section class="py-16 bg-gradient-to-r from-primary/5 to-secondary/5">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row items-center justify-between gap-12">
+<div class="md:w-1/2">
+<h2 class="text-4xl font-bold mb-6">Custom Tailored Perfection</h2>
+<p class="text-lg text-gray-600 mb-8">Experience the luxury of perfectly fitted clothing with our custom tailoring service. Create your unique style with premium fabrics and expert craftsmanship.</p>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+<i class="ri-ruler-line text-primary text-2xl"></i>
+</div>
+  <div>
+    <h3 class="font-semibold">Perfect Measurements</h3>
+    <p class="text-gray-600">Precise fitting for your comfort</p>
+  </div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+<i class="ri-palette-line text-primary text-2xl"></i>
+</div>
+<div>
+<h3 class="font-semibold">Premium Fabrics</h3>
+<p class="text-gray-600">Choose from exclusive materials</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+<i class="ri-scissors-line text-primary text-2xl"></i>
+</div>
+<div>
+<h3 class="font-semibold">Expert Tailoring</h3>
+<p class="text-gray-600">Crafted by skilled artisans</p>
+</div>
+</div>
+</div>
+<button onclick="window.location.href='custom-tailoring.html'" class="mt-8 magnetic-button bg-primary text-white px-8 py-4 rounded-button text-lg font-semibold hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+Start Custom Order
+</button>
+</div>
+<div class="md:w-1/2">
+<div class="relative">
+<img src="https://public.readdy.ai/ai/img_res/53bbf214984ec6eef70bcbb189eeb02e.jpg" alt="Custom Tailoring" class="rounded-lg shadow-2xl">
+<div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-lg shadow-xl">
+<p class="text-2xl font-bold text-primary">20% OFF</p>
+<p class="text-sm text-gray-600">On First Custom Order</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div id="cartPanel" class="cart-panel fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 p-6">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-2xl font-bold">Shopping Cart</h3>
+<button id="closeCart" class="w-10 h-10 flex items-center justify-center hover:text-primary transition-colors">
+<i class="ri-close-line text-2xl"></i>
+</button>
+</div>
+<div id="cartItems" class="space-y-4"></div>
+<div class="absolute bottom-0 left-0 w-full p-6">
+<div class="flex justify-between mb-4">
+<span class="text-lg">Total:</span>
+<span class="text-lg font-bold" id="cartTotal">$0.00</span>
+</div>
+<button onclick="window.location.href='checkout.html'" class="w-full bg-primary text-white py-4 rounded-button font-semibold hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+Checkout
+</button>
+</div>
+</div>
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="container mx-auto px-6">
+    <h2>About Us</h2>
+    <p>Welcome to Future Fashion, your number one source for all things fashion. We're dedicated to giving you the very best of clothing, with a focus on quality, customer service, and uniqueness.</p>
+    <p>Founded in 2025, Future Fashion has come a long way from its beginnings. When we first started out, our passion for eco-friendly fashion drove us to do tons of research so that Future Fashion can offer you the world's most advanced clothing. We now serve customers all over the world and are thrilled that we're able to turn our passion into our own website.</p>
+    <p>We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please don't hesitate to contact us.</p>
+    <p>Email: <a href="mailto:info@futurefashion.com">info@futurefashion.com</a></p>
+    <p>Phone: +1 234 567 890</p>
+    <p>Address: 123 Fashion Street, New York, NY 10001</p>
+  </div>
+</footer>
+<script>
+function handleLogout(e) {
+  e.preventDefault();
+  const confirmLogout = confirm("Are you sure you want to logout?");
+  if(confirmLogout) {
+    // Add logout logic here
+    window.location.href = 'login.html';
+  }
+}
+const pages = {
+newArrivals: "new-arrivals.html",
+men: "men.html",
+women: "women.html",
+collections: "collections.html",
+product: "product.html"
+};
+const products = [
+{
+id: 1,
+name: "Oversized organza shirt",
+price: 2999,
+image: "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Ff4%2Fb4%2Ff4b40b34cbf8d9d4c4bad4ba64605bedba01ee32.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",category: "men",
+description: "Elegant minimalist blazer with modern cut and premium fabric."
+},
+{
+id: 2,
+name: "Compact Volume T-Shirt",
+price: 1000,
+image: "https://cdn.wconcept.com/products/resize/632x843/migration/i/imgpin.wconceptusa.com/187a40d3630/22315/44/KWWcrdtLBLup7OI5n9uhgaTjTYc.png",
+category: "women",
+description: "Innovative pants with smart fabric technology and sleek design."
+},
+{
+id: 3,
+name: "Wide High Jeans",
+price: 1200,
+image: "https://image.hm.com/assets/hm/15/67/156783968ad03b92064deb3b0773049457c50130.jpg?imwidth=384",
+category: "men",
+description: "Contemporary take on the classic shirt with unique details."
+},
+{
+id: 4,
+name: "Tapered-waist denim shirt",
+price: 2000,
+image: "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F4d%2F8b%2F4d8bbfac757eeffaffc3c3886e1a6eaa0a3eb2df.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+category: "women",
+description: "Bold and innovative dress with avant-garde design."
+},
+{
+id: 5,
+name: "Denim shirt",
+price: 800,
+image: "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F8a%2Ff8%2F8af87123efec9804b0fbaf6d67a3034513758214.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]",
+category: "men",
+description: "Sustainable jacket made from eco-friendly materials."
+},
+{
+id: 6,
+name: "Regular Fit Textured shirt",
+price: 800,
+image: "https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F47%2F8a%2F478acc9e8d7d70691541d6f9bde907270d04523a.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/main]",
+category: "women",
+description: "Comfortable and stylish shoes for smart casual wear."
+},
+{
+id: 7,
+name: "Urban Explorer Backpack",
+price: 89.99,
+image: "https://public.readdy.ai/ai/img_res/7g5f3e5c1fe0145fd657d2f41d02f8d8e.jpg",
+category: "accessories",
+description: "Durable backpack designed for urban explorers."
+},
+{
+id: 8,
+name: "Luxury Silk Scarf",
+price: 79.99,
+image: "https://public.readdy.ai/ai/img_res/8h6f3e5c1fe0145fd657d2f41d02f8d8e.jpg",
+category: "accessories",
+description: "Elegant silk scarf with luxurious feel."
+},
+{
+id: 9,
+name: "Tech-Savvy Watch",
+price: 299.99,
+image: "https://public.readdy.ai/ai/img_res/9i7f3e5c1fe0145fd657d2f41d02f8d8e.jpg",
+category: "accessories",
+description: "Smartwatch with advanced tech features."
+},
+{
+id: 10,
+name: "Vintage Leather Belt",
+price: 49.99,
+image: "https://public.readdy.ai/ai/img_res/10j8f3e5c1fe0145fd657d2f41d02f8d8e.jpg",
+category: "accessories",
+description: "Classic leather belt with vintage design."
+},
+{
+id: 11,
+name: "Futuristic Sunglasses",
+price: 129.99,
+image: "https://public.readdy.ai/ai/img_res/11k9f3e5c1fe0145fd657d2f41d02f8d8e.jpg",
+category: "accessories",
+description: "Sunglasses with a futuristic look and feel."
+},
+{
+  id: 12,
+name: "Avant-Garde Dress",
+price: 249.99,
+image: "https://public.readdy.ai/ai/img_res/4d2f3e5c1fe0145fd657d2f41d02f8d8e.jpg",
+category: "women",
+description: "Bold and innovative dress with avant-garde design."
+},
+];
+const cart = {
+items: [],
+total: 0
+};
+function searchProducts(query) {
+query = query.toLowerCase();
+const results = products.filter(product =>
+product.name.toLowerCase().includes(query) ||
+product.description.toLowerCase().includes(query) ||
+product.category.toLowerCase().includes(query)
+);
+const resultsDiv = document.getElementById('searchResults');
+if (results.length === 0) {
+resultsDiv.innerHTML = '<p class="text-gray-500 text-center py-4">No products found</p>';
+return;
+}
+resultsDiv.innerHTML = results.map(product => `
+<div class="flex items-center gap-4 p-2 hover:bg-gray-50 rounded cursor-pointer" onclick="window.location.href='product.html?id=${product.id}'">
+<img src="${product.image}" class="w-16 h-16 object-cover rounded" alt="${product.name}">
+<div>
+<h4 class="font-medium">${product.name}</h4>
+<p class="text-sm text-gray-600">${product.category}</p>
+<p class="text-sm font-medium">$${product.price}</p>
+</div>
+</div>
+`).join('');
+}
+function renderProducts() {
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = products.map(product => `
+        <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105">
+            <div class="relative aspect-[4/5]">
+                <img src="${product.image}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" alt="${product.name}">
+                <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100">
+                    <div class="space-y-3 text-center">
+                        <button onclick="openProductDetails(${product.id})" class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 block">
+                            View Details
+                        </button>
+                        <button onclick="addToCart(${product.id})" class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 block">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-semibold mb-2 hover:text-primary transition-colors duration-300">${product.name}</h3>
+                <p class="text-lg font-medium">$${product.price}</p>
+                <p class="text-sm text-gray-600 mt-2">${product.description}</p>
+                <p class="text-sm text-primary mt-2 capitalize">${product.category}</p>
+                <button onclick="window.location.href='products/product${product.id}.html'" class="bg-primary text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 block mt-4">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function openProductDetails(productId) {
+    const product = products.find(p => p.id === productId);
+    const productDetails = `
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-lg p-6 w-11/12 md:w-2/3 lg:w-1/2 relative">
+                <button onclick="closeProductDetails()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                    <i class="ri-close-line text-2xl"></i>
+                </button>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="w-full md:w-1/2">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover rounded-lg">
+                    </div>
+                    <div class="flex flex-col justify-between w-full md:w-1/2">
+                        <div>
+                            <h2 class="text-2xl font-bold mb-4">${product.name}</h2>
+                            <p class="text-lg font-medium mb-4">$${product.price}</p>
+                            <p class="text-gray-600 mb-4">${product.description}</p>
+                            <p class="text-sm text-primary capitalize">${product.category}</p>
+                        </div>
+                        <button onclick="addToCart(${product.id})" class="bg-primary text-white px-6 py-3 rounded-button font-semibold hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 mt-4">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', productDetails);
+}
+
+function closeProductDetails() {
+    const productDetails = document.querySelector('.fixed.inset-0.bg-black.bg-opacity-50');
+    if (productDetails) {
+        productDetails.remove();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+});
+function addToCart(productId) {
+const product = products.find(p => p.id === productId);
+cart.items.push(product);
+cart.total += product.price;
+updateCart();
+document.getElementById('cartPanel').classList.add('open');
+}
+function updateCart() {
+const cartItems = document.getElementById('cartItems');
+cartItems.innerHTML = cart.items.map(item => `
+<div class="flex items-center gap-4">
+<img src="${item.image}" class="w-20 h-20 object-cover rounded" alt="${item.name}">
+<div>
+<h4 class="font-semibold">${item.name}</h4>
+<p>$${item.price}</p>
+</div>
+</div>
+`).join('');
+document.getElementById('cartTotal').textContent = `$${cart.total.toFixed(2)}`;
+}
+document.getElementById('cartButton').addEventListener('click', () => {
+document.getElementById('cartPanel').classList.add('open');
+});
+document.getElementById('closeCart').addEventListener('click', () => {
+document.getElementById('cartPanel').classList.remove('open');
+});
+document.addEventListener('mousemove', (e) => {
+const cursor = document.querySelector('.custom-cursor');
+cursor.style.left = e.clientX + 'px';
+cursor.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('.magnetic-button').forEach(button => {
+button.addEventListener('mousemove', (e) => {
+const rect = button.getBoundingClientRect();
+const x = e.clientX - rect.left;
+const y = e.clientY - rect.top;
+button.style.transform = `translate(${x/10}px, ${y/10}px)`;
+});
+button.addEventListener('mouseleave', () => {
+button.style.transform = 'translate(0px, 0px)';
+});
+});
+const searchButton = document.getElementById('searchButton');
+const searchPanel = document.getElementById('searchPanel');
+const searchInput = document.getElementById('searchInput');
+searchButton.addEventListener('click', () => {
+searchPanel.classList.toggle('hidden');
+if (!searchPanel.classList.contains('hidden')) {
+searchInput.focus();
+}
+});
+document.addEventListener('click', (e) => {
+if (!searchButton.contains(e.target) && !searchPanel.contains(e.target)) {
+searchPanel.classList.add('hidden');
+}
+});
+searchInput.addEventListener('input', (e) => {
+searchProducts(e.target.value);
+});
+searchInput.addEventListener('keydown', (e) => {
+if (e.key === 'Escape') {
+searchPanel.classList.add('hidden');
+}
+});
+</script>
+</body>
+</html>

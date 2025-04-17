@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>360° Product View - Premium Cotton T-Shirt</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#3b82f6',
+secondary: '#f59e0b'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.main-image-viewer img {
+position: absolute;
+top: 0;
+left: 0;
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+.main-image-viewer img.active {
+opacity: 1;
+}
+.thumbnail-viewer::-webkit-scrollbar {
+height: 6px;
+}
+.thumbnail-viewer::-webkit-scrollbar-track {
+background: #f1f1f1;
+border-radius: 3px;
+}
+.thumbnail-viewer::-webkit-scrollbar-thumb {
+background: #888;
+border-radius: 3px;
+}
+.thumbnail-viewer::-webkit-scrollbar-thumb:hover {
+background: #555;
+}
+.size-chart-modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.5);
+z-index: 1000;
+}
+.size-chart-modal.active {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.review-modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.5);
+z-index: 1000;
+}
+.review-modal.active {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+</style>
+</head>
+<body class="bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 py-8">
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-4">
+<div class="main-image-viewer bg-white rounded-lg shadow-sm h-[500px] relative overflow-hidden">
+<img src="https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2F4d%2F8b%2F4d8bbfac757eeffaffc3c3886e1a6eaa0a3eb2df.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BLOOKBOOK%5D%2Cres%5Bm%5D%2Chmver%5B1%5D&call=url[file:/product/main]" class="w-full h-full object-contain active" alt="T-shirt front view">
+<img src="https://image.hm.com/assets/hm/92/18/9218efc3ce5f4f0e4decb242e8b11ac41dce2191.jpg?imwidth=1536" class="w-full h-full object-contain" alt="T-shirt back view">
+<img src="https://image.hm.com/assets/hm/8e/5a/8e5ae10676d3814c183d3ac39304adce18c80d38.jpg?imwidth=1536" class="w-full h-full object-contain" alt="T-shirt collar detail">
+<img src="https://image.hm.com/assets/hm/bf/47/bf47621b9e654ff14956fdb4546724793e9a1f0f.jpg?imwidth=1536" class="w-full h-full object-contain" alt="T-shirt fabric detail">
+<img src="https://image.hm.com/assets/hm/e5/7f/e57f5d5dddf2f46920de90edcaa3f739baa346cb.jpg?imwidth=1536" class="w-full h-full object-contain" alt="T-shirt sleeve detail">
+<div class="absolute inset-0 flex items-center justify-between px-4">
+<button class="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center" onclick="prevImage()">
+<i class="ri-arrow-left-s-line text-2xl"></i>
+</button>
+<button class="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center" onclick="nextImage()">
+<i class="ri-arrow-right-s-line text-2xl"></i>
+</button>
+</div>
+</div>
+<div class="thumbnail-viewer flex space-x-4 overflow-x-auto py-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+<button class="w-20 h-20 rounded-lg overflow-hidden border-2 border-primary flex-shrink-0 bg-gray-100" onclick="showImage(0)">
+<div class="w-full h-full flex items-center justify-center">1</div>
+</button>
+<button class="w-20 h-20 rounded-lg overflow-hidden border-2 border-gray-200 flex-shrink-0 bg-gray-100" onclick="showImage(1)">
+<div class="w-full h-full flex items-center justify-center">2</div>
+</button>
+<button class="w-20 h-20 rounded-lg overflow-hidden border-2 border-gray-200 flex-shrink-0 bg-gray-100" onclick="showImage(2)">
+<div class="w-full h-full flex items-center justify-center">3</div>
+</button>
+<button class="w-20 h-20 rounded-lg overflow-hidden border-2 border-gray-200 flex-shrink-0 bg-gray-100" onclick="showImage(3)">
+<div class="w-full h-full flex items-center justify-center">4</div>
+</button>
+<button class="w-20 h-20 rounded-lg overflow-hidden border-2 border-gray-200 flex-shrink-0 bg-gray-100" onclick="showImage(4)">
+<div class="w-full h-full flex items-center justify-center">5</div>
+</button>
+</div>
+</div>
+<div class="space-y-6">
+<div>
+<h1 class="text-3xl font-bold">Tapered-waist denim shirt</h1>
+<div class="flex items-center mt-2">
+<div class="flex items-center">
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-half-fill text-secondary"></i>
+</div>
+<span class="ml-2 text-sm text-gray-600">(4.5) · 128 Reviews</span>
+</div>
+<div class="mt-4">
+<span class="text-3xl font-bold">1,999.00</span>
+<span class="ml-2 text-sm text-gray-500">Rs</span>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Color</label>
+<div class="flex space-x-2">
+<button class="w-10 h-10 rounded-full bg-black border-2 border-gray-300" data-color="black"></button>
+<button class="w-10 h-10 rounded-full bg-white border-2 border-gray-300" data-color="white"></button>
+<button class="w-10 h-10 rounded-full bg-gray-500 border-2 border-gray-300" data-color="gray"></button>
+<button class="w-10 h-10 rounded-full bg-blue-500 border-2 border-gray-300" data-color="blue"></button>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Size</label>
+<div class="flex space-x-2">
+<button class="px-4 py-2 border border-gray-300 rounded-button hover:border-primary" data-size="XS">XS</button>
+<button class="px-4 py-2 border border-gray-300 rounded-button hover:border-primary" data-size="S">S</button>
+<button class="px-4 py-2 border border-gray-300 rounded-button hover:border-primary" data-size="M">M</button>
+<button class="px-4 py-2 border border-gray-300 rounded-button hover:border-primary" data-size="L">L</button>
+<button class="px-4 py-2 border border-gray-300 rounded-button hover:border-primary" data-size="XL">XL</button>
+</div>
+<button class="text-sm text-primary mt-2" onclick="toggleSizeChart()">Size Guide</button>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Quantity</label>
+<div class="flex items-center space-x-2">
+<button class="w-10 h-10 rounded-button border border-gray-300 flex items-center justify-center" onclick="updateQuantity(-1)">
+<i class="ri-subtract-line"></i>
+</button>
+<input type="text" id="quantity" value="1" class="w-16 h-10 text-center border border-gray-300 rounded-button" readonly>
+<button class="w-10 h-10 rounded-button border border-gray-300 flex items-center justify-center" onclick="updateQuantity(1)">
+<i class="ri-add-line"></i>
+</button>
+</div>
+</div>
+<div class="flex space-x-4">
+<button class="flex-1 bg-primary text-white py-3 rounded-button hover:bg-primary/90">Add to Cart</button>
+<button class="flex-1 bg-secondary text-white py-3 rounded-button hover:bg-secondary/90">Buy Now</button>
+</div>
+</div>
+<div class="border-t pt-6 space-y-4">
+<div class="collapse-section">
+<button class="flex items-center justify-between w-full text-left" onclick="toggleSection(this)">
+<span class="font-medium">Product Overview</span>
+<i class="ri-arrow-down-s-line"></i>
+</button>
+<div class="content hidden mt-2 text-gray-600">
+Premium cotton t-shirt made from 100% organic cotton. Features a classic fit with reinforced stitching for durability. Perfect for everyday wear.
+</div>
+</div>
+<div class="collapse-section">
+<button class="flex items-center justify-between w-full text-left" onclick="toggleSection(this)">
+<span class="font-medium">Material Details</span>
+<i class="ri-arrow-down-s-line"></i>
+</button>
+<div class="content hidden mt-2 text-gray-600">
+<ul class="list-disc pl-4">
+<li>100% Organic Cotton</li>
+<li>180 GSM fabric weight</li>
+<li>Pre-shrunk material</li>
+<li>Double-stitched hems</li>
+</ul>
+</div>
+</div>
+<div class="collapse-section">
+<button class="flex items-center justify-between w-full text-left" onclick="toggleSection(this)">
+<span class="font-medium">Care Instructions</span>
+<i class="ri-arrow-down-s-line"></i>
+</button>
+<div class="content hidden mt-2 text-gray-600">
+<ul class="list-disc pl-4">
+<li>Machine wash cold</li>
+<li>Tumble dry low</li>
+<li>Do not bleach</li>
+<li>Iron on low heat if needed</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-16">
+<h2 class="text-2xl font-bold mb-8">Ratings & Reviews</h2>
+<div class="grid grid-cols-3 gap-8">
+<div class="bg-white p-6 rounded-lg shadow-sm">
+<div class="text-center">
+<div class="text-4xl font-bold">4.5</div>
+<div class="flex items-center justify-center mt-2">
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-half-fill text-secondary"></i>
+</div>
+<div class="text-sm text-gray-500 mt-1">Based on 128 reviews</div>
+</div>
+<div class="mt-6 space-y-2">
+<div class="flex items-center">
+<span class="w-8 text-sm">5★</span>
+<div class="flex-1 h-2 bg-gray-200 rounded-full mx-2">
+<div class="h-2 bg-secondary rounded-full" style="width: 70%"></div>
+</div>
+<span class="w-8 text-sm text-right">70%</span>
+</div>
+<div class="flex items-center">
+<span class="w-8 text-sm">4★</span>
+<div class="flex-1 h-2 bg-gray-200 rounded-full mx-2">
+<div class="h-2 bg-secondary rounded-full" style="width: 20%"></div>
+</div>
+<span class="w-8 text-sm text-right">20%</span>
+</div>
+<div class="flex items-center">
+<span class="w-8 text-sm">3★</span>
+<div class="flex-1 h-2 bg-gray-200 rounded-full mx-2">
+<div class="h-2 bg-secondary rounded-full" style="width: 5%"></div>
+</div>
+<span class="w-8 text-sm text-right">5%</span>
+</div>
+<div class="flex items-center">
+<span class="w-8 text-sm">2★</span>
+<div class="flex-1 h-2 bg-gray-200 rounded-full mx-2">
+<div class="h-2 bg-secondary rounded-full" style="width: 3%"></div>
+</div>
+<span class="w-8 text-sm text-right">3%</span>
+</div>
+<div class="flex items-center">
+<span class="w-8 text-sm">1★</span>
+<div class="flex-1 h-2 bg-gray-200 rounded-full mx-2">
+<div class="h-2 bg-secondary rounded-full" style="width: 2%"></div>
+</div>
+<span class="w-8 text-sm text-right">2%</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 border border-primary text-primary rounded-button hover:bg-primary hover:text-white" onclick="toggleReviewModal()">Write a Review</button>
+</div>
+<div class="col-span-2 space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex space-x-4">
+<select class="border border-gray-300 rounded-button px-4 py-2">
+<option>All Ratings</option>
+<option>5 Stars</option>
+<option>4 Stars</option>
+<option>3 Stars</option>
+<option>2 Stars</option>
+<option>1 Star</option>
+</select>
+<select class="border border-gray-300 rounded-button px-4 py-2">
+<option>Most Recent</option>
+<option>Highest Rated</option>
+<option>Lowest Rated</option>
+</select>
+</div>
+</div>
+<div class="space-y-4">
+<div class="bg-white p-6 rounded-lg shadow-sm">
+<div class="flex items-center justify-between">
+<div>
+<div class="flex items-center">
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-fill text-secondary"></i>
+</div>
+<div class="mt-1">
+<span class="font-medium">James Wilson</span>
+<span class="text-gray-500 text-sm ml-2">2 days ago</span>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Verified Purchase</span>
+</div>
+</div>
+<p class="mt-4 text-gray-600">Excellent quality t-shirt! The fabric is soft and comfortable, and the fit is perfect. I've washed it several times now and it still looks brand new. Highly recommend!</p>
+<div class="mt-4 flex items-center space-x-4">
+<button class="flex items-center space-x-1 text-sm text-gray-500 hover:text-gray-700">
+<i class="ri-thumb-up-line"></i>
+<span>Helpful (12)</span>
+</button>
+<button class="flex items-center space-x-1 text-sm text-gray-500 hover:text-gray-700">
+<i class="ri-thumb-down-line"></i>
+<span>Not Helpful (2)</span>
+</button>
+</div>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-sm">
+<div class="flex items-center justify-between">
+<div>
+<div class="flex items-center">
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-fill text-secondary"></i>
+<i class="ri-star-line text-secondary"></i>
+</div>
+<div class="mt-1">
+<span class="font-medium">Emily Thompson</span>
+<span class="text-gray-500 text-sm ml-2">1 week ago</span>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Verified Purchase</span>
+</div>
+</div>
+<p class="mt-4 text-gray-600">Great t-shirt overall, but runs slightly large. I usually wear a medium but should have ordered a small. The material quality is excellent though, and the color is exactly as shown in the photos.</p>
+<div class="mt-4 flex items-center space-x-4">
+<button class="flex items-center space-x-1 text-sm text-gray-500 hover:text-gray-700">
+<i class="ri-thumb-up-line"></i>
+<span>Helpful (8)</span>
+</button>
+<button class="flex items-center space-x-1 text-sm text-gray-500 hover:text-gray-700">
+<i class="ri-thumb-down-line"></i>
+<span>Not Helpful (1)</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="size-chart-modal">
+<div class="bg-white p-6 rounded-lg shadow-lg max-w-2xl w-full mx-4">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-xl font-bold">Size Guide</h3>
+<button onclick="toggleSizeChart()">
+<i class="ri-close-line text-2xl"></i>
+</button>
+</div>
+<table class="w-full">
+<thead>
+<tr class="border-b">
+<th class="py-2">Size</th>
+<th class="py-2">Chest (inches)</th>
+<th class="py-2">Length (inches)</th>
+<th class="py-2">Sleeve (inches)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b">
+<td class="py-2 text-center">XS</td>
+<td class="py-2 text-center">34-36</td>
+<td class="py-2 text-center">26</td>
+<td class="py-2 text-center">7.5</td>
+</tr>
+<tr class="border-b">
+<td class="py-2 text-center">S</td>
+<td class="py-2 text-center">36-38</td>
+<td class="py-2 text-center">27</td>
+<td class="py-2 text-center">7.75</td>
+</tr>
+<tr class="border-b">
+<td class="py-2 text-center">M</td>
+<td class="py-2 text-center">38-40</td>
+<td class="py-2 text-center">28</td>
+<td class="py-2 text-center">8</td>
+</tr>
+<tr class="border-b">
+<td class="py-2 text-center">L</td>
+<td class="py-2 text-center">40-42</td>
+<td class="py-2 text-center">29</td>
+<td class="py-2 text-center">8.25</td>
+</tr>
+<tr>
+<td class="py-2 text-center">XL</td>
+<td class="py-2 text-center">42-44</td>
+<td class="py-2 text-center">30</td>
+<td class="py-2 text-center">8.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="review-modal">
+<div class="bg-white p-6 rounded-lg shadow-lg max-w-2xl w-full mx-4">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-xl font-bold">Write a Review</h3>
+<button onclick="toggleReviewModal()">
+<i class="ri-close-line text-2xl"></i>
+</button>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+<div class="flex items-center space-x-1">
+<button class="text-2xl text-gray-300 hover:text-secondary" onclick="setRating(1)">
+<i class="ri-star-fill"></i>
+</button>
+<button class="text-2xl text-gray-300 hover:text-secondary" onclick="setRating(2)">
+<i class="ri-star-fill"></i>
+</button>
+<button class="text-2xl text-gray-300 hover:text-secondary" onclick="setRating(3)">
+<i class="ri-star-fill"></i>
+</button>
+<button class="text-2xl text-gray-300 hover:text-secondary" onclick="setRating(4)">
+<i class="ri-star-fill"></i>
+</button>
+<button class="text-2xl text-gray-300 hover:text-secondary" onclick="setRating(5)">
+<i class="ri-star-fill"></i>
+</button>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Review</label>
+<textarea class="w-full h-32 border border-gray-300 rounded-lg p-2" placeholder="Write your review here..."></textarea>
+</div>
+<button class="w-full bg-primary text-white py-2 rounded-button hover:bg-primary/90">Submit Review</button>
+</div>
+</div>
+<div class="mt-16">
+  <h2 class="text-2xl font-bold mb-8">Similar Products</h2>
+  <div class="grid grid-cols-4 gap-6">
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+      <div class="h-64 overflow-hidden">
+        <img src="https://public.readdy.ai/ai/img_res/3dcf99d20bd87144f33be8c6065213df.jpg" class="w-full h-full object-cover" alt="Black Polo Shirt">
+      </div>
+      <div class="p-4">
+        <h3 class="font-medium">Premium Cotton Polo</h3>
+        <div class="flex items-center mt-1">
+          <div class="flex items-center">
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-line text-secondary"></i>
+          </div>
+          <span class="ml-2 text-sm text-gray-600">(4.0)</span>
+        </div>
+        <div class="mt-2">
+          <span class="font-bold">$34.99</span>
+          <span class="ml-2 text-sm text-gray-500">USD</span>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+      <div class="h-64 overflow-hidden">
+        <img src="https://public.readdy.ai/ai/img_res/7d71c6f67acdd9c8c8c640324f70d271.jpg" class="w-full h-full object-cover" alt="Gray Hoodie">
+      </div>
+      <div class="p-4">
+        <h3 class="font-medium">Classic Cotton Hoodie</h3>
+        <div class="flex items-center mt-1">
+          <div class="flex items-center">
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-half-fill text-secondary"></i>
+          </div>
+          <span class="ml-2 text-sm text-gray-600">(4.5)</span>
+        </div>
+        <div class="mt-2">
+          <span class="font-bold">$49.99</span>
+          <span class="ml-2 text-sm text-gray-500">USD</span>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+      <div class="h-64 overflow-hidden">
+        <img src="https://public.readdy.ai/ai/img_res/872424c84885a2ead32ef2359617730c.jpg" class="w-full h-full object-cover" alt="White Tank Top">
+      </div>
+      <div class="p-4">
+        <h3 class="font-medium">Essential Tank Top</h3>
+        <div class="flex items-center mt-1">
+          <div class="flex items-center">
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-line text-secondary"></i>
+          </div>
+          <span class="ml-2 text-sm text-gray-600">(4.0)</span>
+        </div>
+        <div class="mt-2">
+          <span class="font-bold">$24.99</span>
+          <span class="ml-2 text-sm text-gray-500">USD</span>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+      <div class="h-64 overflow-hidden">
+        <img src="https://public.readdy.ai/ai/img_res/46eacecfa8213fe8dcd285a883764122.jpg" class="w-full h-full object-cover" alt="Blue Long Sleeve Shirt">
+      </div>
+      <div class="p-4">
+        <h3 class="font-medium">Long Sleeve Cotton Shirt</h3>
+        <div class="flex items-center mt-1">
+          <div class="flex items-center">
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-fill text-secondary"></i>
+            <i class="ri-star-fill text-secondary"></i>
+          </div>
+          <span class="ml-2 text-sm text-gray-600">(5.0)</span>
+        </div>
+        <div class="mt-2">
+          <span class="font-bold">$39.99</span>
+          <span class="ml-2 text-sm text-gray-500">USD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+let currentImageIndex = 0;
+const mainImages = document.querySelectorAll('.main-image-viewer img');
+const thumbnails = document.querySelectorAll('.thumbnail-viewer button');
+function showImage(index) {
+mainImages[currentImageIndex].classList.remove('active');
+thumbnails[currentImageIndex].classList.remove('border-primary');
+thumbnails[currentImageIndex].classList.add('border-gray-200');
+currentImageIndex = index;
+mainImages[currentImageIndex].classList.add('active');
+thumbnails[currentImageIndex].classList.add('border-primary');
+thumbnails[currentImageIndex].classList.remove('border-gray-200');
+}
+function nextImage() {
+const nextIndex = (currentImageIndex + 1) % mainImages.length;
+showImage(nextIndex);
+}
+function prevImage() {
+const prevIndex = (currentImageIndex - 1 + mainImages.length) % mainImages.length;
+showImage(prevIndex);
+}
+// Add keyboard navigation
+document.addEventListener('keydown', (e) => {
+if (e.key === 'ArrowLeft') {
+prevImage();
+} else if (e.key === 'ArrowRight') {
+nextImage();
+}
+});
+function toggleSection(button) {
+const content = button.nextElementSibling;
+content.classList.toggle('hidden');
+const icon = button.querySelector('i');
+icon.classList.toggle('ri-arrow-down-s-line');
+icon.classList.toggle('ri-arrow-up-s-line');
+}
+function updateQuantity(change) {
+const input = document.getElementById('quantity');
+let value = parseInt(input.value) + change;
+if(value < 1) value = 1;
+if(value > 99) value = 99;
+input.value = value;
+}
+function toggleSizeChart() {
+document.querySelector('.size-chart-modal').classList.toggle('active');
+}
+function toggleReviewModal() {
+document.querySelector('.review-modal').classList.toggle('active');
+}
+function setRating(rating) {
+const stars = document.querySelectorAll('.review-modal .ri-star-fill');
+stars.forEach((star, index) => {
+star.parentElement.classList.toggle('text-secondary', index < rating);
+star.parentElement.classList.toggle('text-gray-300', index >= rating);
+});
+}
+document.querySelectorAll('[data-color]').forEach(button => {
+button.addEventListener('click', () => {
+document.querySelectorAll('[data-color]').forEach(b => b.classList.remove('ring-2', 'ring-primary'));
+button.classList.add('ring-2', 'ring-primary');
+});
+});
+document.querySelectorAll('[data-size]').forEach(button => {
+button.addEventListener('click', () => {
+document.querySelectorAll('[data-size]').forEach(b => b.classList.remove('border-primary', 'text-primary'));
+button.classList.add('border-primary', 'text-primary');
+});
+});
+</script>
+</body>
+</html>

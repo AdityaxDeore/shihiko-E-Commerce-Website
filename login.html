@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Fashion Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        .glass-effect {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.7);
+        }
+        .video-overlay {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            transform: translateX(200%);
+            transition: transform 0.3s ease-out;
+        }
+        .toast.show {
+            transform: translateX(0);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4F46E5',
+                        secondary: '#6366F1'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen flex items-center justify-center overflow-hidden bg-gray-100">
+    <div class="fixed inset-0 w-full h-full z-0">
+        <div class="video-overlay absolute inset-0 z-10"></div>
+        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+            <source src="https://public.readdy.ai/ai/img_res/658791b765a6d9c37e5f15088a3a98c6.jpg" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="glass-effect rounded-lg p-10 w-full max-w-md relative z-20 shadow-2xl animate-fadeIn">
+        <div class="text-center mb-8">
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/e844b9191966559.65d4aaeb63413.gif" alt="logo" class="w-500 h-20 mx-auto">
+            <p class="text-gray-700 text-lg font-medium">   .</p>
+            <p class="text-gray-700 text-lg font-medium">Welcome back!</p>
+            <p class="text-gray-500 text-sm">Your premium shopping destination</p>
+        </div>
+
+        <form id="loginForm" class="space-y-6">
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="ri-mail-line text-gray-400"></i>
+                </div>
+                <input type="email" id="email" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-button focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Email address" required>
+            </div>
+
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="ri-lock-line text-gray-400"></i>
+                </div>
+                <input type="password" id="password" class="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-button focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Password" required>
+                <div class="password-toggle">
+                    <i class="ri-eye-line text-gray-400 hover:text-gray-600" id="togglePassword"></i>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <label class="flex items-center">
+                    <input type="checkbox" class="rounded border-gray-300 text-primary focus:ring-primary">
+                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                </label>
+                <a href="#" class="text-sm text-primary hover:text-secondary">Forgot password?</a>
+            </div>
+            <button type="submit" class="w-full bg-primary text-white py-2 rounded-button hover:bg-secondary transition-colors duration-200 !rounded-button whitespace-nowrap">Sign In</button>
+            <div class="relative my-6">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-300"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                    <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4">
+                <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-button hover:bg-gray-50 !rounded-button whitespace-nowrap">
+                    <i class="ri-google-fill text-[#DB4437]"></i>
+                </button>
+                <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-button hover:bg-gray-50 !rounded-button whitespace-nowrap">
+                    <i class="ri-facebook-fill text-[#4267B2]"></i>
+                </button>
+                <button type="button" class="flex items-center justify-center py-2 px-4 border border-gray-300 rounded-button hover:bg-gray-50 !rounded-button whitespace-nowrap">
+                    <i class="ri-apple-fill text-black"></i>
+                </button>
+            </div>
+
+            <p class="text-center text-sm text-gray-600 mt-6">
+                Don't have an account? 
+                <a href="#" class="text-primary hover:text-secondary">Sign up</a>
+            </p>
+        </form>
+    </div>
+
+    <div id="toast" class="toast">
+        <p id="toastMessage"></p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('loginForm');
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.className = type === 'password' ? 'ri-eye-line text-gray-400 hover:text-gray-600' : 'ri-eye-off-line text-gray-400 hover:text-gray-600';
+            });
+
+            function showToast(message, isError = false) {
+                toastMessage.textContent = message;
+                toast.style.background = isError ? 'rgba(220, 38, 38, 0.9)' : 'rgba(34, 197, 94, 0.9)';
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
+            }
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+
+                if (!email || !password) {
+                    showToast('Please fill in all fields', true);
+                    return;
+                }
+
+                if (!email.includes('@')) {
+                    showToast('Please enter a valid email address', true);
+                    return;
+                }
+
+                if (password.length < 6) {
+                    showToast('Password must be at least 6 characters', true);
+                    return;
+                }
+
+                showToast('Login successful!');
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>

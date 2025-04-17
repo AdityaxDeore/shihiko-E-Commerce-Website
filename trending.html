@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Fashion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .product-overlay {
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+        
+        .product-image {
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .category-pill {
+            transition: all 0.3s ease;
+        }
+        
+        .category-pill:hover {
+            transform: scale(1.05);
+        }
+
+        .wishlist-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .wishlist-btn:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(
+                to right,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0.3) 50%,
+                rgba(255,255,255,0) 100%
+            );
+            animation: shimmer 2s infi nite;
+
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF4B91',
+                        secondary: '#FFB6C1'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white font-['Poppins']">
+    <nav class="fixed top-0 w-full bg-white shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-['Pacifico'] text-primary">logo</a>
+                </div>
+                
+                <div class="flex-1 max-w-xl mx-8">
+                    <div class="relative">
+                        <input type="text" placeholder="Search for trending styles..." class="w-full px-4 py-2 rounded-full bg-gray-50 border-none focus:outline-none focus:ring-2 focus:ring-primary/20">
+                        <button class="absolute right-3 top-1/2 -translate-y-1/2">
+                            <i class="ri-search-line text-gray-400"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-6">
+                    <button class="relative">
+                        <i class="ri-shopping-bag-line text-xl"></i>
+                        <span class="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center bg-primary text-white text-xs rounded-full">3</span>
+                    </button>
+                    <button>
+                        <i class="ri-user-line text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="mt-16 min-h-screen">
+        <div class="relative overflow-hidden bg-gradient-to-r from-primary/5 to-secondary/5 py-20">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex items-center">
+                    <div class="w-1/2 pr-12">
+                        <h1 class="text-5xl font-bold mb-6">Discover Latest Fashion Trends</h1>
+                        <p class="text-gray-600 mb-8">Explore our curated collection of trending styles. New arrivals updated weekly.</p>
+                        <button class="bg-primary text-white px-8 py-3 rounded-button hover:bg-primary/90 transition-colors">
+                            Shop Now
+                        </button>
+                    </div>
+                    <div class="w-1/2">
+                        <img src="https://public.readdy.ai/ai/img_res/78c119b77adedb4896bca48c13ddea1d.jpg" class="w-full h-[400px] object-cover rounded-lg shadow-xl" alt="Trending Fashion">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-semibold">Trending Categories</h2>
+                <div class="flex space-x-4">
+                    <button class="category-pill px-6 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-colors">All</button>
+                    <button class="category-pill px-6 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-colors">Women</button>
+                    <button class="category-pill px-6 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-colors">Men</button>
+                    <button class="category-pill px-6 py-2 rounded-full bg-gray-100 hover:bg-primary hover:text-white transition-colors">Accessories</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-4 gap-8">
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+                    <div class="relative overflow-hidden">
+                        <img src="https://public.readdy.ai/ai/img_res/f678f575c457f661d5fd8f287b1dbd5c.jpg" class="product-image w-full h-[400px] object-cover" alt="Summer Dress">
+                        <div class="product-overlay absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <button class="bg-white text-black px-6 py-2 rounded-button hover:bg-primary hover:text-white transition-colors">Quick View</button>
+                        </div>
+                        <button class="wishlist-btn absolute top-4 right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                            <i class="ri-heart-line text-gray-600"></i>
+                        </button>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-primary text-white text-sm rounded-full shine-effect relative overflow-hidden">New</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium mb-2">Summer Breeze Dress</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">$89.99</span>
+                            <div class="flex space-x-2">
+                                <button class="w-4 h-4 rounded-full bg-[#FFE5E5] border-2 border-white shadow-sm"></button>
+                                <button class="w-4 h-4 rounded-full bg-[#E5E5FF] border-2 border-white shadow-sm"></button>
+                                <button class="w-4 h-4 rounded-full bg-[#E5FFE5] border-2 border-white shadow-sm"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+                    <div class="relative overflow-hidden">
+                        <img src="https://public.readdy.ai/ai/img_res/d5c7d4c0824829743fbe6fb182fa18fe.jpg" class="product-image w-full h-[400px] object-cover" alt="Denim Jacket">
+                        <div class="product-overlay absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <button class="bg-white text-black px-6 py-2 rounded-button hover:bg-primary hover:text-white transition-colors">Quick View</button>
+                        </div>
+                        <button class="wishlist-btn absolute top-4 right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                            <i class="ri-heart-line text-gray-600"></i>
+                        </button>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-primary text-white text-sm rounded-full shine-effect relative overflow-hidden">Trending</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium mb-2">Classic Denim Jacket</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">$129.99</span>
+                            <div class="flex space-x-2">
+                                <button class="w-4 h-4 rounded-full bg-[#E5E5FF] border-2 border-white shadow-sm"></button>
+                                <button class="w-4 h-4 rounded-full bg-[#FFE5E5] border-2 border-white shadow-sm"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+                    <div class="relative overflow-hidden">
+                        <img src="https://public.readdy.ai/ai/img_res/4c1b030984d0dac7a79aea6afa09f401.jpg" class="product-image w-full h-[400px] object-cover" alt="Evening Dress">
+                        <div class="product-overlay absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <button class="bg-white text-black px-6 py-2 rounded-button hover:bg-primary hover:text-white transition-colors">Quick View</button>
+                        </div>
+                        <button class="wishlist-btn absolute top-4 right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                            <i class="ri-heart-line text-gray-600"></i>
+                        </button>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium mb-2">Evening Elegance Dress</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">$159.99</span>
+                            <div class="flex space-x-2">
+                                <button class="w-4 h-4 rounded-full bg-[#000000] border-2 border-white shadow-sm"></button>
+                                <button class="w-4 h-4 rounded-full bg-[#FFE5E5] border-2 border-white shadow-sm"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-sm">
+                    <div class="relative overflow-hidden">
+                        <img src="https://public.readdy.ai/ai/img_res/1d171fac4bbf234ed1be12ad701c9cca.jpg" class="product-image w-full h-[400px] object-cover" alt="Linen Shirt">
+                        <div class="product-overlay absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <button class="bg-white text-black px-6 py-2 rounded-button hover:bg-primary hover:text-white transition-colors">Quick View</button>
+                        </div>
+                        <button class="wishlist-btn absolute top-4 right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                            <i class="ri-heart-line text-gray-600"></i>
+                        </button>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 bg-primary text-white text-sm rounded-full shine-effect relative overflow-hidden">Best Seller</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium mb-2">Comfort Linen Shirt</h3>
+                        <div class="flex items-center justify-between">
+                            <span class="text-primary font-semibold">$69.99</span>
+                            <div class="flex space-x-2">
+                                <button class="w-4 h-4 rounded-full bg-[#E5FFE5] border-2 border-white shadow-sm"></button>
+                                <button class="w-4 h-4 rounded-full bg-[#FFE5E5] border-2 border-white shadow-sm"></button>
+                                <button class="w-4 h-4 rounded-full bg-[#E5E5FF] border-2 border-white shadow-sm"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center mt-12">
+                <button class="px-8 py-3 border border-primary text-primary rounded-button hover:bg-primary hover:text-white transition-colors">
+                    Load More
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-50 py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-['Pacifico'] text-xl text-primary mb-4">logo</h3>
+                    <p class="text-gray-600 text-sm">Discover the latest trends in fashion and explore our curated collection of clothing and accessories.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="#" class="hover:text-primary">New Arrivals</a></li>
+                        <li><a href="#" class="hover:text-primary">Best Sellers</a></li>
+                        <li><a href="#" class="hover:text-primary">Sale</a></li>
+                        <li><a href="#" class="hover:text-primary">Collections</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Customer Service</h4>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><a href="#" class="hover:text-primary">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-primary">Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-primary">Returns & Exchanges</a></li>
+                        <li><a href="#" class="hover:text-primary">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-600 text-sm mb-4">Subscribe to receive updates, access to exclusive deals, and more.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-2 rounded-l-button border-none focus:outline-none focus:ring-2 focus:ring-primary/20">
+                        <button class="bg-primary text-white px-4 py-2 rounded-r-button hover:bg-primary/90 transition-colors">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 mt-12 pt-8 flex items-center justify-between text-sm text-gray-600">
+                <p>&copy; 2025 logo. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-primary">Privacy Policy</a>
+                    <a href="#" class="hover:text-primary">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const wishlistButtons = document.querySelectorAll('.wishlist-btn');
+            
+            wishlistButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    if(icon.classList.contains('ri-heart-line')) {
+                        icon.classList.remove('ri-heart-line');
+                        icon.classList.add('ri-heart-fill');
+                        icon.style.color = '#FF4B91';
+                    } else {
+                        icon.classList.remove('ri-heart-fill');
+                        icon.classList.add('ri-heart-line');
+                        icon.style.color = '#4B5563';
+                    }
+                });
+            });
+
+            const loadMoreBtn = document.querySelector('button:contains("Load More")');
+            if(loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', function() {
+                    this.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i>Loading...';
+                    setTimeout(() => {
+                        this.innerHTML = 'Load More';
+                    }, 2000);
+                });
+            }
+
+            const quickViewButtons = document.querySelectorAll('button:contains("Quick View")');
+            quickViewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modal = document.createElement('div');
+                    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+                    modal.innerHTML = `
+                        <div class="bg-white rounded-lg p-8 max-w-2xl w-full mx-4 relative">
+                            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                                <i class="ri-close-line text-2xl"></i>
+                            </button>
+                            <div class="flex gap-8">
+                                <div class="w-1/2">
+                                    <img src="${this.closest('.product-card').querySelector('img').src}" class="w-full h-[500px] object-cover rounded-lg" alt="Product">
+                                </div>
+                                <div class="w-1/2">
+                                    <h3 class="text-2xl font-semibold mb-4">${this.closest('.product-card').querySelector('h3').textContent}</h3>
+                                    <p class="text-gray-600 mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <div class="mb-6">
+                                        <h4 class="font-medium mb-2">Size</h4>
+                                        <div class="flex space-x-4">
+                                            <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-primary">S</button>
+                                            <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-primary">M</button>
+                                            <button class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-primary">L</button>
+                                        </div>
+                                    </div>
+                                    <div class="mb-8">
+                                        <h4 class="font-medium mb-2">Color</h4>
+                                        <div class="flex space-x-4">
+                                            ${this.closest('.product-card').querySelectorAll('.rounded-full').length > 0 
+                                                ? Array.from(this.closest('.product-card').querySelectorAll('.rounded-full')).map(color => 
+                                                    `<button class="w-8 h-8 rounded-full" style="background-color: ${color.style.backgroundColor}"></button>`
+                                                ).join('')
+                                                : ''
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-4">
+                                        <div class="flex items-center border rounded-button">
+                                            <button class="px-4 py-2 text-gray-600 hover:text-primary">-</button>
+                                            <input type="text" value="1" class="w-12 text-center border-none" readonly>
+                                            <button class="px-4 py-2 text-gray-600 hover:text-primary">+</button>
+                                        </div>
+                                        <button class="flex-1 bg-primary text-white py-2 rounded-button hover:bg-primary/90 transition-colors">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
+                    
+                    modal.querySelector('button').addEventListener('click', () => {
+                        modal.remove();
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fashion Gallery</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#6366f1',
+secondary: '#f43f5e'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.masonry-grid {
+column-count: 4;
+column-gap: 1.5rem;
+}
+@media (max-width: 1280px) {
+.masonry-grid { column-count: 3; }
+}
+@media (max-width: 768px) {
+.masonry-grid { column-count: 2; }
+}
+.masonry-item {
+break-inside: avoid;
+margin-bottom: 1.5rem;
+}
+.product-overlay {
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+.product-card:hover .product-overlay {
+opacity: 1;
+}
+.product-card {
+transition: transform 0.3s ease;
+}
+.product-card:hover {
+transform: scale(1.02);
+}
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+<header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+<div class="max-w-7xl mx-auto px-4 py-4">
+<div class="flex items-center justify-between">
+<h1 class="text-2xl font-['Pacifico'] text-primary">logo</h1>
+<div class="flex-1 max-w-xl mx-8">
+<div class="relative">
+<input type="text" placeholder="Search for clothes..." class="w-full px-4 py-2 pl-10 border rounded-full focus:outline-none focus:ring-2 focus:ring-primary/20">
+<div class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 flex items-center justify-center">
+<i class="ri-search-line text-gray-400"></i>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-gray-100 rounded-full">
+<i class="ri-heart-line text-xl"></i>
+</button>
+<button class="p-2 hover:bg-gray-100 rounded-full">
+<i class="ri-shopping-cart-line text-xl"></i>
+</button>
+<button class="p-2 hover:bg-gray-100 rounded-full">
+<i class="ri-user-line text-xl"></i>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between mt-4">
+<div class="flex gap-4">
+<button class="px-4 py-2 text-sm font-medium hover:text-primary">All</button>
+<button class="px-4 py-2 text-sm font-medium hover:text-primary">Women</button>
+<button class="px-4 py-2 text-sm font-medium hover:text-primary">Men</button>
+<button class="px-4 py-2 text-sm font-medium hover:text-primary">Accessories</button>
+</div>
+<div class="relative group">
+<button class="px-4 py-2 text-sm font-medium flex items-center gap-2">
+Sort by: <span class="font-semibold">Newest</span>
+<i class="ri-arrow-down-s-line"></i>
+</button>
+<div class="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+<button class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-50">Newest</button>
+<button class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-50">Popular</button>
+<button class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-50">Price: Low to High</button>
+<button class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-50">Price: High to Low</button>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 pt-32 pb-16">
+<div class="masonry-grid" id="productGrid"></div>
+</main>
+<button id="backToTop" class="fixed bottom-8 right-8 p-3 bg-primary text-white rounded-full shadow-lg opacity-0 invisible transition-all">
+<i class="ri-arrow-up-line text-xl"></i>
+</button>
+<script>
+const products = [
+{
+image: "https://public.readdy.ai/ai/img_res/bd80eefc48c5aef0cb9b42b0431e049b.jpg",
+name: "Cotton Summer Dress",
+description: "Elegant white cotton dress perfect for summer days",
+price: "$89.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/b4ce993e358a8c967e563c4f506f8e42.jpg",
+name: "Premium Denim Jeans",
+description: "Classic fit premium denim with perfect wash",
+price: "$129.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/fd45aa6ce125717d54aebf8f1720df43.jpg",
+name: "Silk Blouse",
+description: "Luxurious cream silk blouse with elegant details",
+price: "$159.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/9b4ec080d22e963ec58cad1a0c1ef353.jpg",
+name: "Cashmere Sweater",
+description: "Super soft cashmere in timeless beige",
+price: "$199.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/7a01b47e0e74c06dea6c5b26189626db.jpg",
+name: "Leather Jacket",
+description: "Classic black leather jacket with modern cut",
+price: "$299.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/d26a7e43fd15d754f9d0770f0d716de2.jpg",
+name: "Linen Blazer",
+description: "Lightweight linen blazer perfect for summer office wear",
+price: "$179.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/a4e59e08d875ef99521de0a057338069.jpg",
+name: "Floral Maxi Dress",
+description: "Stunning floral print maxi dress for special occasions",
+price: "$219.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/65355f8f0b2dfc2eaa03d37b212a3b24.jpg",
+name: "Wool Coat",
+description: "Classic camel wool coat with timeless design",
+price: "$399.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/ed4a012bbb410cf0f1b9adc26e8db5ac.jpg",
+name: "Silk Scarf",
+description: "Luxurious silk scarf with unique artistic print",
+price: "$79.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/069b03af939d4c7c3a70ec51631aef08.jpg",
+name: "Leather Crossbody",
+description: "Elegant cognac leather crossbody bag",
+price: "$249.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/fd6cad8bc767221d8cf2f878e2d0fb1a.jpg",
+name: "Knit Cardigan",
+description: "Cozy knit cardigan in beautiful soft pink",
+price: "$149.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/29e1c287d5a43c8987d87ed2860e0a70.jpg",
+name: "Pleated Midi Skirt",
+description: "Stunning metallic pleated midi skirt",
+price: "$169.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/e5da78aca9bd58d56769b56373e39668.jpg",
+name: "Evening Gown",
+description: "Elegant emerald green satin evening gown",
+price: "$499.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/b823fbad77b1bf13e01b1a0d4e9c15d8.jpg",
+name: "Leather Boots",
+description: "Classic black leather ankle boots",
+price: "$289.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/2adce6187460578e2b8f013ed06f74da.jpg",
+name: "Structured Tote",
+description: "Professional navy blue structured tote bag",
+price: "$199.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/007ef2ec8ef287f51915df12c17666da.jpg",
+name: "Wide Leg Trousers",
+description: "Elegant cream wide leg trousers",
+price: "$159.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/80bf91bb5ed02bc3d7c732c93e62c810.jpg",
+name: "Crystal Necklace",
+description: "Stunning crystal statement necklace",
+price: "$129.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/f74f1e319f1eb84a5ff1b7a3b2106122.jpg",
+name: "Silk Pajama Set",
+description: "Luxurious dusty rose silk pajama set",
+price: "$189.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/897fdd3461bd287c4671c2b1ddf12365.jpg",
+name: "Cashmere Scarf",
+description: "Warm grey plaid cashmere scarf",
+price: "$149.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/fc1fc11e3a22d5c43cab44c0e9487f8b.jpg",
+name: "Leather Gloves",
+description: "Elegant burgundy leather gloves",
+price: "$89.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/0b6e72963b5264f3c3d5f6be56e69eaa.jpg",
+name: "Velvet Clutch",
+description: "Luxurious deep purple velvet evening clutch",
+price: "$119.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/55313a83b5a2448b669cb55e6a38a4a3.jpg",
+name: "Pearl Earrings",
+description: "Classic pearl drop earrings",
+price: "$99.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/af95d69a8d82ad13db1f40d54a0812f9.jpg",
+name: "Silk Hair Scarf",
+description: "Stylish geometric print silk hair scarf",
+price: "$59.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/77d2cb6adbd9d97f710697e99c7df199.jpg",
+name: "Leather Belt",
+description: "Classic leather belt with gold buckle",
+price: "$79.99"
+},
+{
+image: "https://public.readdy.ai/ai/img_res/a649338470e93383eaa34240c1d2dfa2.jpg",
+name: "Designer Sunglasses",
+description: "Elegant tortoise shell sunglasses",
+price: "$159.99"
+}
+];
+function createProductCard(product) {
+return `
+<div class="masonry-item">
+<div class="product-card relative rounded-lg overflow-hidden bg-white shadow-sm">
+<img src="${product.image}" alt="${product.name}" class="w-full h-auto object-cover">
+<div class="product-overlay absolute inset-0 bg-black/40 flex items-end">
+<div class="p-4 w-full">
+<h3 class="text-white font-semibold">${product.name}</h3>
+<p class="text-white/80 text-sm mt-1">${product.description}</p>
+<div class="flex items-center justify-between mt-2">
+<span class="text-white font-bold">${product.price}</span>
+<div class="flex gap-2">
+<button class="p-2 bg-white/20 rounded-full hover:bg-white/30">
+<i class="ri-heart-line text-white"></i>
+</button>
+<button class="p-2 bg-white/20 rounded-full hover:bg-white/30">
+<i class="ri-share-line text-white"></i>
+</button>
+<button class="p-2 bg-primary rounded-full hover:bg-primary/90">
+<i class="ri-shopping-cart-line text-white"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+`;
+}
+const productGrid = document.getElementById('productGrid');
+const backToTop = document.getElementById('backToTop');
+products.forEach(product => {
+productGrid.innerHTML += createProductCard(product);
+});
+window.addEventListener('scroll', () => {
+if (window.pageYOffset > 500) {
+backToTop.classList.remove('opacity-0', 'invisible');
+} else {
+backToTop.classList.add('opacity-0', 'invisible');
+}
+});
+backToTop.addEventListener('click', () => {
+window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+let loading = false;
+window.addEventListener('scroll', () => {
+if (loading) return;
+if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1000) {
+loading = true;
+setTimeout(() => {
+products.forEach(product => {
+productGrid.innerHTML += createProductCard(product);
+});
+loading = false;
+}, 1000);
+}
+});
+</script>
+</body>
+</html>
