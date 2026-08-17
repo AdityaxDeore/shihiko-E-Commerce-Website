@@ -99,7 +99,7 @@ A clean, functional dashboard for users to manage their details, orders, and wis
 ## ☕ Support the Project
 If you found this project helpful, consider supporting its development!
 
-<a href="https://www.buymeacoffee.com/adityaxdeore" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+<a href="https://www.buymeacoffee.com/adityadeorb" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 ## 🔍 Keywords / Tags
 `E-commerce` `Fashion` `Tailwind CSS` `JavaScript` `Frontend` `UI/UX` `Web Design` `Responsive Design` `Brutalist Design` `Glassmorphism` `HTML5` `CSS3` `Shopping Cart` `Product Grid` `Modern Web` `Interactive UI`
