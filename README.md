@@ -14,31 +14,31 @@ Here is a visual walkthrough of the platform, structured logically by user flow:
 
 ### 1. Home / Dashboard
 The main landing page featuring an immersive video hero, curated category highlights, and a dynamically loaded product grid.
-![Dashboard](IMG/screencapture-localhost-8000-dashboard-html-2026-08-17-21_26_09.png)
+<img src="img/screencapture-localhost-8000-dashboard-html-2026-08-17-21_26_09.png" alt="Dashboard" height="500">
 
 ### 2. New Arrivals
 A dynamic page for the latest drops, accented with a modern infinite-scrolling marquee ticker.
-![New Arrivals](IMG/screencapture-localhost-8000-new-arrivals-html-2026-08-17-21_25_16.png)
+<img src="img/screencapture-localhost-8000-new-arrivals-html-2026-08-17-21_25_16.png" alt="New Arrivals" height="500">
 
 ### 3. Men's Collection
 A high-end presentation for menswear using a sophisticated split-screen hero layout and refined typography.
-![Men's Collection](IMG/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-men-html-2026-08-17-21_53_15.png)
+<img src="img/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-men-html-2026-08-17-21_53_15.png" alt="Men's Collection" height="500">
 
 ### 4. Women's Edit
 A minimalist, editorial-styled showcase specifically designed for women's fashion lines.
-![Women's Edit](IMG/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-women-html-2026-08-17-21_53_56.png)
+<img src="img/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-women-html-2026-08-17-21_53_56.png" alt="Women's Edit" height="500">
 
 ### 5. Collections
 A curated view of seasonal selections utilizing a sticky navigation sidebar for easy browsing between drops.
-![Collections](IMG/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-collections-html-2026-08-17-21_54_16.png)
+<img src="img/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-collections-html-2026-08-17-21_54_16.png" alt="Collections" height="500">
 
 ### 6. Product Details
 An immersive, focused view for individual items featuring a main image viewer and interactive thumbnails.
-![Product Details](IMG/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-products-product1-html-2026-08-17-21_59_26.png)
+<img src="img/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-products-product1-html-2026-08-17-21_59_26.png" alt="Product Details" height="500">
 
 ### 7. User Profile
 A clean, functional dashboard for users to manage their details, orders, and wishlist.
-![User Profile](IMG/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-user-html-2026-08-17-21_54_36.png)
+<img src="img/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-user-html-2026-08-17-21_54_36.png" alt="User Profile" height="500">
 
 ## 🛠️ Technologies Used
 - **HTML5** for structural foundation.
