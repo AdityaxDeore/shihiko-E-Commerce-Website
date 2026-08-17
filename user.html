@@ -76,6 +76,16 @@
             transform: rotate(45deg);
         }
     </style>
+
+<style>
+.glass-nav { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.9); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); }
+.footer { background-color: #f8f8f8; padding: 40px 0; text-align: center; font-family: 'Inter', sans-serif; }
+.footer h2 { font-size: 24px; margin-bottom: 20px; color: #333; }
+.footer p { font-size: 16px; color: #666; margin-bottom: 10px; }
+.footer a { color: #57B5E7; text-decoration: none; transition: color 0.3s; }
+.footer a:hover { color: #333; }
+</style>
+
 </head>
 <body class="bg-gray-50 min-h-screen">
     <div class="max-w-4xl mx-auto p-6">
@@ -84,7 +94,7 @@
             <div class="mb-8 flex items-center">
                 <div class="relative">
                     <div class="w-32 h-32 rounded-full overflow-hidden bg-gray-200">
-                        <img src="https://public.readdy.ai/ai/img_res/9ea6867fcb1ec60f30f2a96b9ee4e687.jpg" 
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80" 
                              alt="Profile" 
                              class="w-full h-full object-cover">
                     </div>
@@ -214,5 +224,15 @@
             });
         });
     </script>
+</div>
+<footer class="footer text-black">
+  <div class="container mx-auto px-6">
+    <h2>About Us</h2>
+    <p>Welcome to Shihiko, your number one source for all things fashion. We're dedicated to giving you the very best of clothing, with a focus on quality, customer service, and uniqueness.</p>
+    <p>Email: <a href="mailto:info@shihiko.com">info@shihiko.com</a></p>
+    <p>Phone: +1 234 567 890</p>
+    <p>Address: 123 Fashion Street, New York, NY 10001</p>
+  </div>
+</footer>
 </body>
 </html>
