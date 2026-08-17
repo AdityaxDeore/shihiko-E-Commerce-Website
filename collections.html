@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collections - Shihiko</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+<style>
+.glass-nav { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.9); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); }
+.footer { background-color: #f8f8f8; padding: 40px 0; text-align: center; font-family: 'Outfit', sans-serif; }
+.footer h2 { font-size: 24px; margin-bottom: 20px; color: #333; }
+.footer p { font-size: 16px; color: #666; margin-bottom: 10px; }
+.footer a { color: #57B5E7; text-decoration: none; transition: color 0.3s; }
+.footer a:hover { color: #333; }
+html { scroll-behavior: smooth; }
+</style>
+
+<style>
+.masonry-grid {
+    column-count: 1;
+    column-gap: 1.5rem;
+}
+@media (min-width: 768px) { .masonry-grid { column-count: 2; } }
+@media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+@media (min-width: 1280px) { .masonry-grid { column-count: 4; } }
+.masonry-item { break-inside: avoid; margin-bottom: 1.5rem; }
+</style>
+
+</head>
+<body class="bg-white text-gray-900 font-['Outfit']">
+
+<nav class="glass-nav fixed w-full z-50">
+  <div class="container mx-auto px-6 py-4">
+  <div class="flex items-center justify-between">
+  <a href="dashboard.html"><img src="products/f3ee8a86-c652-4735-99a9-6af0b66dd625.png" alt="logo" class="h-10"></a>
+  <div class="hidden md:flex items-center space-x-8 text-black">
+  <div class="relative group h-full py-2">
+  <button class="flex items-center hover:text-primary transition-colors">New Arrivals <i class="ri-arrow-down-s-line ml-1"></i></button>
+  <div class="absolute top-full left-0 w-48 bg-white text-black rounded-lg shadow-lg py-2 hidden group-hover:block dropdown-menu">
+  <a href="new-arrivals.html?category=latest" class="block px-4 py-2 hover:bg-gray-50">Latest Releases</a>
+  <a href="new-arrivals.html?category=trending" class="block px-4 py-2 hover:bg-gray-50">Trending Now</a>
+  <a href="new-arrivals.html?category=seasonal" class="block px-4 py-2 hover:bg-gray-50">Seasonal Collection</a>
+  <a href="new-arrivals.html?category=exclusive" class="block px-4 py-2 hover:bg-gray-50">Exclusive Items</a>
+  </div>
+  </div>
+  <div class="relative group h-full py-2">
+  <button class="flex items-center hover:text-primary transition-colors">Men <i class="ri-arrow-down-s-line ml-1"></i></button>
+  <div class="absolute top-full left-0 w-48 bg-white text-black rounded-lg shadow-lg py-2 hidden group-hover:block dropdown-menu">
+  <a href="men.html?category=clothing" class="block px-4 py-2 hover:bg-gray-50">Clothing</a>
+  <a href="men.html?category=shoes" class="block px-4 py-2 hover:bg-gray-50">Shoes</a>
+  <a href="men.html?category=accessories" class="block px-4 py-2 hover:bg-gray-50">Accessories</a>
+  <a href="men.html?category=suits" class="block px-4 py-2 hover:bg-gray-50">Suits</a>
+  </div>
+  </div>
+  <div class="relative group h-full py-2">
+  <button class="flex items-center hover:text-primary transition-colors">Women <i class="ri-arrow-down-s-line ml-1"></i></button>
+  <div class="absolute top-full left-0 w-48 bg-white text-black rounded-lg shadow-lg py-2 hidden group-hover:block dropdown-menu">
+  <a href="women.html?category=clothing" class="block px-4 py-2 hover:bg-gray-50">Clothing</a>
+  <a href="women.html?category=shoes" class="block px-4 py-2 hover:bg-gray-50">Shoes</a>
+  <a href="women.html?category=accessories" class="block px-4 py-2 hover:bg-gray-50">Accessories</a>
+  <a href="women.html?category=dresses" class="block px-4 py-2 hover:bg-gray-50">Dresses</a>
+  </div>
+  </div>
+  <div class="relative group h-full py-2">
+  <button class="flex items-center hover:text-primary transition-colors">Collections <i class="ri-arrow-down-s-line ml-1"></i></button>
+  <div class="absolute top-full left-0 w-48 bg-white text-black rounded-lg shadow-lg py-2 hidden group-hover:block dropdown-menu">
+  <a href="collections.html?category=summer" class="block px-4 py-2 hover:bg-gray-50">Summer 2025</a>
+  <a href="collections.html?category=winter" class="block px-4 py-2 hover:bg-gray-50">Winter Essentials</a>
+  <a href="collections.html?category=limited" class="block px-4 py-2 hover:bg-gray-50">Limited Edition</a>
+  <a href="collections.html?category=sustainable" class="block px-4 py-2 hover:bg-gray-50">Sustainable Fashion</a>
+  </div>
+  </div>
+  </div>
+  <div class="flex items-center space-x-6 text-black">
+  <button class="w-10 h-10 hover:text-primary transition-all"><i class="ri-search-line text-xl"></i></button>
+  <div class="relative group py-2">
+  <button class="w-10 h-10 hover:text-primary transition-all"><i class="ri-user-line text-xl"></i></button>
+  <div class="absolute right-0 top-full w-48 bg-white text-black rounded-lg shadow-lg py-2 hidden group-hover:block">
+  <a href="user.html" class="flex items-center px-4 py-2 hover:bg-gray-50"><i class="ri-user-settings-line mr-2"></i> Profile</a>
+  <a href="orders.html" class="flex items-center px-4 py-2 hover:bg-gray-50"><i class="ri-shopping-bag-line mr-2"></i> Orders</a>
+  <a href="wishlist.html" class="flex items-center px-4 py-2 hover:bg-gray-50"><i class="ri-heart-line mr-2"></i> Wishlist</a>
+  <div class="border-t border-gray-100 my-1"></div>
+  <a href="login.html" class="flex items-center px-4 py-2 hover:bg-gray-50 text-red-500"><i class="ri-logout-box-line mr-2"></i> Logout</a>
+  </div>
+  </div>
+  <button class="w-10 h-10 hover:text-primary transition-all"><i class="ri-shopping-bag-line text-xl"></i></button>
+  </div>
+  </div>
+  </div>
+</nav>
+
+<div class="pt-32 pb-24 container mx-auto px-6">
+    <div class="flex flex-col md:flex-row gap-12">
+        <!-- Sticky Sidebar -->
+        <div class="md:w-1/4">
+            <div class="sticky top-32">
+                <h1 class="text-4xl font-bold mb-8">Collections</h1>
+                <ul class="space-y-4 text-lg text-gray-500">
+                    <li><a href="#summer" class="hover:text-black transition-colors block py-2 border-b border-gray-100">Summer 2025</a></li>
+                    <li><a href="#winter" class="hover:text-black transition-colors block py-2 border-b border-gray-100">Winter Essentials</a></li>
+                    <li><a href="#limited" class="hover:text-black transition-colors block py-2 border-b border-gray-100">Limited Edition</a></li>
+                    <li><a href="#sustainable" class="hover:text-black transition-colors block py-2 border-b border-gray-100">Sustainable Series</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="md:w-3/4 space-y-32">
+            
+            <div id="summer" class="scroll-mt-32">
+                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/41db36213101861.6740411dce1c9.jpg" class="w-full h-[600px] object-cover rounded-2xl mb-8" alt="Summer">
+                <div class="flex justify-between items-end">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-2">Summer 2025</h2>
+                        <p class="text-gray-500 max-w-lg">Lightweight breathable fabrics designed for movement and heat resistance.</p>
+                    </div>
+                    <button class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800 transition-colors">Explore</button>
+                </div>
+            </div>
+
+            <div id="winter" class="scroll-mt-32">
+                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/335c09213101861.6740411dcfab4.jpg" class="w-full h-[600px] object-cover rounded-2xl mb-8" alt="Winter">
+                <div class="flex justify-between items-end">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-2">Winter Essentials</h2>
+                        <p class="text-gray-500 max-w-lg">Heavy knits, layered aesthetics, and unmatched insulation.</p>
+                    </div>
+                    <button class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800 transition-colors">Explore</button>
+                </div>
+            </div>
+            
+            <div id="limited" class="scroll-mt-32">
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/01d29f213101861.6740411dd0174.png" class="w-full h-[400px] object-cover rounded-l-2xl" alt="Limited">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/3d6b83213101861.6740411dd3a24.png" class="w-full h-[400px] object-cover rounded-r-2xl" alt="Limited">
+                </div>
+                <div class="flex justify-between items-end">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-2">Limited Edition</h2>
+                        <p class="text-gray-500 max-w-lg">Exclusive drops. Once they are gone, they are gone forever.</p>
+                    </div>
+                    <button class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800 transition-colors">Explore</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Main Product Grid Section -->
+<main class="max-w-7xl mx-auto px-4 py-16 w-full">
+    <div class="flex items-center justify-between mb-8 border-b border-gray-200 pb-4">
+        <h2 class="text-4xl font-bold text-gray-900">Shop Collection</h2>
+        <div class="flex gap-4">
+            <button class="px-4 py-2 text-sm font-medium hover:text-gray-600 transition-colors">All</button>
+            <button class="px-4 py-2 text-sm font-medium hover:text-gray-600 transition-colors">Filter <i class="ri-filter-3-line"></i></button>
+        </div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="productGrid">
+        <!-- Products will be dynamically generated by JS -->
+    </div>
+    
+    <div class="mt-12 text-center">
+        <button class="border-2 border-gray-900 text-gray-900 px-8 py-3 rounded hover:bg-gray-900 hover:text-white font-semibold transition-colors duration-300">
+            Load More Products
+        </button>
+    </div>
+</main>
+
+
+<footer class="footer text-black">
+  <div class="container mx-auto px-6">
+    <h2>About Us</h2>
+    <p>Welcome to Shihiko, your number one source for all things fashion. We're dedicated to giving you the very best of clothing, with a focus on quality, customer service, and uniqueness.</p>
+    <p>Email: <a href="mailto:info@shihiko.com">info@shihiko.com</a></p>
+    <p>Phone: +1 234 567 890</p>
+    <p>Address: 123 Fashion Street, New York, NY 10001</p>
+  </div>
+</footer>
+
+
+
+<script>
+    const allBehanceImages = [
+        "https://mir-s3-cdn-cf.behance.net/project_modules/fs/335c09213101861.6740411dcfab4.jpg",
+        "https://mir-s3-cdn-cf.behance.net/project_modules/fs/41db36213101861.6740411dce1c9.jpg",
+        "https://mir-s3-cdn-cf.behance.net/project_modules/fs/422987218187329.679cf67860e0b.jpg",
+        "https://mir-s3-cdn-cf.behance.net/project_modules/fs/a20ce6213101861.6740411dd418c.jpg",
+        "https://mir-s3-cdn-cf.behance.net/project_modules/source/01d29f213101861.6740411dd0174.png",
+        "https://mir-s3-cdn-cf.behance.net/project_modules/source/13b6f5213101861.6740411dd18db.png",
+        "https://mir-s3-cdn-cf.behance.net/project_modules/source/3d6b83213101861.6740411dd3a24.png",
+        "https://mir-s3-cdn-cf.behance.net/project_modules/source/7545fb213101861.6740411dd06d0.png",
+        "https://mir-s3-cdn-cf.behance.net/project_modules/source/7d48f0213101861.6740411dd35b4.png",
+        "https://mir-s3-cdn-cf.behance.net/project_modules/source/f779a4213101861.6740411dd4ca4.png"
+    ];
+    
+    const productData = [
+        { name: "Structural Pleated Dress", price: "$245.00" },
+        { name: "Technical Cargo Trousers", price: "$165.00" },
+        { name: "Oversized Wool Blend Coat", price: "$320.00" },
+        { name: "Essential Cotton T-Shirt", price: "$45.00" },
+        { name: "Asymmetrical Knit Sweater", price: "$180.00" },
+        { name: "Leather Chelsea Boots", price: "$295.00" },
+        { name: "Printed Silk Scarf", price: "$85.00" },
+        { name: "Utility Vest", price: "$125.00" },
+        { name: "Tapered-waist Denim Shirt", price: "$140.00" },
+        { name: "Canvas Tote Bag", price: "$110.00" },
+        { name: "Classic Aviator Sunglasses", price: "$195.00" },
+        { name: "Heavyweight Hoodie", price: "$150.00" }
+    ];
+
+    const grid = document.getElementById('productGrid');
+    if (grid) {
+        productData.forEach((data, index) => {
+            const item = document.createElement('div');
+            item.className = 'product-card bg-white rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105';
+            
+            const randomImg = allBehanceImages[index % allBehanceImages.length];
+            
+            item.innerHTML = `
+                <div class="relative aspect-[4/5]">
+                    <img src="${randomImg}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" alt="${data.name}">
+                    <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100 z-10">
+                        <div class="space-y-3 text-center">
+                            <button class="bg-[#3b82f6] text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 block">
+                                View Details
+                            </button>
+                            <button class="bg-[#3b82f6] text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 block">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2 hover:text-[#3b82f6] transition-colors duration-300">${data.name}</h3>
+                    <p class="text-lg font-medium">$${data.price}</p>
+                    <p class="text-sm text-gray-600 mt-2">Premium quality tailored product for maximum comfort and style.</p>
+                    <button class="bg-[#3b82f6] text-white px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 block mt-4 w-full">
+                        Buy Now
+                    </button>
+                </div>
+            `;
+            grid.appendChild(item);
+        });
+    }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Tailoring - Shihiko</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+<style>
+.glass-nav { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.9); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); }
+.footer { background-color: #f8f8f8; padding: 40px 0; text-align: center; font-family: 'Inter', sans-serif; }
+.footer h2 { font-size: 24px; margin-bottom: 20px; color: #333; font-family: 'Cormorant Garamond', serif; }
+.footer p { font-size: 16px; color: #666; margin-bottom: 10px; }
+.footer a { color: #D4AF37; text-decoration: none; transition: color 0.3s; }
+.footer a:hover { color: #333; }
+.font-serif { font-family: 'Cormorant Garamond', serif; }
+</style>
+</head>
+<body class="bg-[#F8F9FA] text-gray-900 font-['Inter']">
+
+<nav class="glass-nav fixed w-full z-50">
+  <div class="container mx-auto px-6 py-4">
+  <div class="flex items-center justify-between">
+  <a href="dashboard.html"><img src="products/f3ee8a86-c652-4735-99a9-6af0b66dd625.png" alt="logo" class="h-10"></a>
+  <div class="hidden md:flex items-center space-x-8 text-black">
+  <div class="relative group h-full py-2">
+  <button class="flex items-center hover:text-primary transition-colors">New Arrivals <i class="ri-arrow-down-s-line ml-1"></i></button>
+  <div class="absolute top-full left-0 w-48 bg-white text-black rounded-lg shadow-lg py-2 hidden group-hover:block dropdown-menu">
+  <a href="new-arrivals.html?category=latest" class="block px-4 py-2 hover:bg-gray-50">Latest Releases</a>
+  <a href="new-arrivals.html?category=trending" class="block px-4 py-2 hover:bg-gray-50">Trending Now</a>
+  <a href="new-arrivals.html?category=seasonal" class="block px-4 py-2 hover:bg-gray-50">Seasonal Collection</a>
+  <a href="new-arrivals.html?category=exclusive" class="block px-4 py-2 hover:bg-gray-50">Exclusive Items</a>
+  </div>
+  </div>
+  <div class="relative group h-full py-2">
+  <button class="flex items-center hover:text-primary transition-colors">Men <i class="ri-arrow-down-s-line ml-1"></i></button>
+  <div class="absolute top-full left-0 w-48 bg-white text-black rounded-lg shadow-lg py-2 hidden group-hover:block dropdown-menu">
+  <a href="men.html?category=clothing" class="block px-4 py-2 hover:bg-gray-50">Clothing</a>
+  <a href="men.html?category=shoes" class="block px-4 py-2 hover:bg-gray-50">Shoes</a>
+  <a href="men.html?category=accessories" class="block px-4 py-2 hover:bg-gray-50">Accessories</a>
+  <a href="men.html?category=suits" class="block px-4 py-2 hover:bg-gray-50">Suits</a>
+  </div>
+  </div>
+  <div class="relative group h-full py-2">
+  <button class="flex items-center hover:text-primary transition-colors">Women <i class="ri-arrow-down-s-line ml-1"></i></button>
+  <div class="absolute top-full left-0 w-48 bg-white text-black rounded-lg shadow-lg py-2 hidden group-hover:block dropdown-menu">
+  <a href="women.html?category=clothing" class="block px-4 py-2 hover:bg-gray-50">Clothing</a>
+  <a href="women.html?category=shoes" class="block px-4 py-2 hover:bg-gray-50">Shoes</a>
+  <a href="women.html?category=accessories" class="block px-4 py-2 hover:bg-gray-50">Accessories</a>
+  <a href="women.html?category=dresses" class="block px-4 py-2 hover:bg-gray-50">Dresses</a>
+  </div>
+  </div>
+  <div class="relative group h-full py-2">
+  <button class="flex items-center hover:text-primary transition-colors">Collections <i class="ri-arrow-down-s-line ml-1"></i></button>
+  <div class="absolute top-full left-0 w-48 bg-white text-black rounded-lg shadow-lg py-2 hidden group-hover:block dropdown-menu">
+  <a href="collections.html?category=summer" class="block px-4 py-2 hover:bg-gray-50">Summer 2025</a>
+  <a href="collections.html?category=winter" class="block px-4 py-2 hover:bg-gray-50">Winter Essentials</a>
+  <a href="collections.html?category=limited" class="block px-4 py-2 hover:bg-gray-50">Limited Edition</a>
+  <a href="collections.html?category=sustainable" class="block px-4 py-2 hover:bg-gray-50">Sustainable Fashion</a>
+  </div>
+  </div>
+  </div>
+  <div class="flex items-center space-x-6 text-black">
+  <button class="w-10 h-10 hover:text-primary transition-all"><i class="ri-search-line text-xl"></i></button>
+  <div class="relative group py-2">
+  <button class="w-10 h-10 hover:text-primary transition-all"><i class="ri-user-line text-xl"></i></button>
+  <div class="absolute right-0 top-full w-48 bg-white text-black rounded-lg shadow-lg py-2 hidden group-hover:block">
+  <a href="user.html" class="flex items-center px-4 py-2 hover:bg-gray-50"><i class="ri-user-settings-line mr-2"></i> Profile</a>
+  <a href="orders.html" class="flex items-center px-4 py-2 hover:bg-gray-50"><i class="ri-shopping-bag-line mr-2"></i> Orders</a>
+  <a href="wishlist.html" class="flex items-center px-4 py-2 hover:bg-gray-50"><i class="ri-heart-line mr-2"></i> Wishlist</a>
+  <div class="border-t border-gray-100 my-1"></div>
+  <a href="login.html" class="flex items-center px-4 py-2 hover:bg-gray-50 text-red-500"><i class="ri-logout-box-line mr-2"></i> Logout</a>
+  </div>
+  </div>
+  <button class="w-10 h-10 hover:text-primary transition-all"><i class="ri-shopping-bag-line text-xl"></i></button>
+  </div>
+  </div>
+  </div>
+</nav>
+
+<section class="pt-40 pb-20 px-6 max-w-4xl mx-auto text-center">
+    <h4 class="text-[#D4AF37] uppercase tracking-[0.2em] text-sm font-semibold mb-4">Bespoke Service</h4>
+    <h1 class="font-serif text-5xl md:text-7xl font-bold mb-6">Made to Measure.</h1>
+    <p class="text-xl text-gray-500 font-light">Experience sartorial excellence crafted to your exact specifications.</p>
+</section>
+
+<!-- Process Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-6 max-w-6xl">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            <div>
+                <div class="w-16 h-16 mx-auto bg-gray-50 rounded-full flex items-center justify-center text-2xl text-[#D4AF37] mb-6 shadow-inner"><i class="ri-ruler-2-line"></i></div>
+                <h3 class="font-serif text-2xl font-bold mb-3">1. Measurement</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Book a consultation with our master tailors to ensure absolute precision for your unique silhouette.</p>
+            </div>
+            <div>
+                <div class="w-16 h-16 mx-auto bg-gray-50 rounded-full flex items-center justify-center text-2xl text-[#D4AF37] mb-6 shadow-inner"><i class="ri-palette-line"></i></div>
+                <h3 class="font-serif text-2xl font-bold mb-3">2. Fabric Selection</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Choose from our curated collection of Italian wools, Egyptian cottons, and premium silks.</p>
+            </div>
+            <div>
+                <div class="w-16 h-16 mx-auto bg-gray-50 rounded-full flex items-center justify-center text-2xl text-[#D4AF37] mb-6 shadow-inner"><i class="ri-scissors-2-line"></i></div>
+                <h3 class="font-serif text-2xl font-bold mb-3">3. Craftsmanship</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Our artisans spend over 40 hours meticulously crafting and assembling your garment by hand.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Appointment Form -->
+<section class="py-24 px-6">
+    <div class="max-w-3xl mx-auto bg-white p-10 md:p-16 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100">
+        <div class="text-center mb-10">
+            <h2 class="font-serif text-4xl font-bold mb-4">Book a Consultation</h2>
+            <p class="text-gray-500">Secure your appointment at our flagship studio.</p>
+        </div>
+        
+        <form class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                    <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent outline-none transition-all" placeholder="John">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                    <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent outline-none transition-all" placeholder="Doe">
+                </div>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent outline-none transition-all" placeholder="john@example.com">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Garment Type</label>
+                <select class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent outline-none transition-all bg-white">
+                    <option>Two-Piece Suit</option>
+                    <option>Three-Piece Suit</option>
+                    <option>Dress Shirt</option>
+                    <option>Overcoat</option>
+                </select>
+            </div>
+            
+            <div class="pt-4">
+                <button type="button" class="w-full bg-gray-900 text-white py-4 rounded-lg font-semibold hover:bg-[#D4AF37] transition-colors duration-300">Request Appointment</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<footer class="footer text-black">
+  <div class="container mx-auto px-6">
+    <h2>About Us</h2>
+    <p>Welcome to Shihiko, your number one source for all things fashion. We're dedicated to giving you the very best of clothing, with a focus on quality, customer service, and uniqueness.</p>
+    <p>Email: <a href="mailto:info@shihiko.com">info@shihiko.com</a></p>
+    <p>Phone: +1 234 567 890</p>
+    <p>Address: 123 Fashion Street, New York, NY 10001</p>
+  </div>
+</footer>
+
+</body>
+</html>
