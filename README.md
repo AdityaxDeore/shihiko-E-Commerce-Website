@@ -14,31 +14,66 @@ Here is a visual walkthrough of the platform, structured logically by user flow:
 
 ### 1. Home / Dashboard
 The main landing page featuring an immersive video hero, curated category highlights, and a dynamically loaded product grid.
+<br>
 <img src="img/screencapture-localhost-8000-dashboard-html-2026-08-17-21_26_09.png" alt="Dashboard" width="100%">
+<br><br><br>
+
+---
+<br>
 
 ### 2. New Arrivals
 A dynamic page for the latest drops, accented with a modern infinite-scrolling marquee ticker.
+<br>
 <img src="img/screencapture-localhost-8000-new-arrivals-html-2026-08-17-21_25_16.png" alt="New Arrivals" width="100%">
+<br><br><br>
+
+---
+<br>
 
 ### 3. Men's Collection
 A high-end presentation for menswear using a sophisticated split-screen hero layout and refined typography.
+<br>
 <img src="img/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-men-html-2026-08-17-21_53_15.png" alt="Men's Collection" width="100%">
+<br><br><br>
+
+---
+<br>
 
 ### 4. Women's Edit
 A minimalist, editorial-styled showcase specifically designed for women's fashion lines.
+<br>
 <img src="img/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-women-html-2026-08-17-21_53_56.png" alt="Women's Edit" width="100%">
+<br><br><br>
+
+---
+<br>
 
 ### 5. Collections
 A curated view of seasonal selections utilizing a sticky navigation sidebar for easy browsing between drops.
+<br>
 <img src="img/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-collections-html-2026-08-17-21_54_16.png" alt="Collections" width="100%">
+<br><br><br>
+
+---
+<br>
 
 ### 6. Product Details
 An immersive, focused view for individual items featuring a main image viewer and interactive thumbnails.
+<br>
 <img src="img/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-products-product1-html-2026-08-17-21_59_26.png" alt="Product Details" width="100%">
+<br><br><br>
+
+---
+<br>
 
 ### 7. User Profile
 A clean, functional dashboard for users to manage their details, orders, and wishlist.
+<br>
 <img src="img/screencapture-127-0-0-1-5500-shihiko-E-Commerce-Website-user-html-2026-08-17-21_54_36.png" alt="User Profile" width="100%">
+<br><br><br>
+
+---
+<br>
 
 ## 🛠️ Technologies Used
 - **HTML5** for structural foundation.
