@@ -1,6 +1,6 @@
-# Shihiko E-Commerce 
+# E-Commerce Website 
 
-Welcome to the **Shihiko E-Commerce** repository. This project is a premium, brutalist, and editorial-styled modern fashion e-commerce frontend. Built strictly using HTML, Tailwind CSS, and vanilla JavaScript, it provides an elevated user experience with interactive UI elements, glassmorphism design traits, and a clean layout flow.
+Welcome to the **E-Commerce Website** repository. This project is a premium, brutalist, and editorial-styled modern fashion e-commerce frontend. Built strictly using HTML, Tailwind CSS, and vanilla JavaScript, it provides an elevated user experience with interactive UI elements, glassmorphism design traits, and a clean layout flow.
 
 ## 🚀 Features
 - **Responsive Layout**: Fully responsive designs adapted for mobile and large screens.
@@ -58,6 +58,13 @@ A clean, functional dashboard for users to manage their details, orders, and wis
 ---
 *Designed for a luxurious online shopping experience.*
 
+
+
+
+## ☕ Support the Project
+If you found this project helpful, consider supporting its development!
+
+<a href="https://www.buymeacoffee.com/adityaxdeore" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
 ## 🔍 Keywords / Tags
 `E-commerce` `Fashion` `Tailwind CSS` `JavaScript` `Frontend` `UI/UX` `Web Design` `Responsive Design` `Brutalist Design` `Glassmorphism` `HTML5` `CSS3` `Shopping Cart` `Product Grid` `Modern Web` `Interactive UI`
